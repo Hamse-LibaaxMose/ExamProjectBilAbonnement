@@ -3,13 +3,19 @@ package org.example.examprojectbilabonnement.model;
 public class Car {
     private int carNumberID;
     private String model;
-    private String type;
+    private String brand;
     private int frameNumber;
 
-    public Car(int carNumberID, String model, String type, int frameNumber) {
+    public Car(int carNumberID, String model, String brand, int frameNumber) {
         this.carNumberID = carNumberID;
         this.model = model;
-        this.type = type;
+        this.brand = brand;
+        this.frameNumber = frameNumber;
+    }
+
+    public Car(String model, String brand, int frameNumber) {
+        this.model = model;
+        this.brand = brand;
         this.frameNumber = frameNumber;
     }
 
@@ -29,12 +35,12 @@ public class Car {
         this.model = model;
     }
 
-    public String getType() {
-        return type;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
     public int getFrameNumber() {
