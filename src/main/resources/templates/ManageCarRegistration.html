@@ -3,11 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Manage Car registration</title>
+    <link rel="stylesheet" type="text/css" href="/static/Styles.css" th:href="@{Styles.css}">
 </head>
 <body>
 <h1>
     Manage car registration
 </h1>
-
+<table>
+    <thead>
+    <tr>
+        <th>Model</th>
+        <th>Brand</th>
+        <th>FrameNumber</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="car: ${carList}">
+        <td th:text="${car.model}"></td>
+        <td th:text="${car.brand}"></td>
+        <td th:text="${car.frameNumber}"></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <h3>Create new Car</h3>
+    <a href="AddCar.html" th:href="@{/showAddCarPage}">Click to create new car</a>
+</div>
 </body>
 </html>

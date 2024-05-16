@@ -1,26 +1,23 @@
 package org.example.examprojectbilabonnement.controller;
 
 import org.example.examprojectbilabonnement.model.Car;
-import org.example.examprojectbilabonnement.service.DataRegistrationService;
+import org.example.examprojectbilabonnement.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
-public class DataRegistrationController {
+public class CarController {
     @Autowired
-    DataRegistrationService dataRegistrationService;
-    @GetMapping("showDataPage")
-    public String showDataPage() {
-        return "DataRegistration";
-    }
-
-    @GetMapping("CreateCarPage")
-    public String managerCar() {
-
+    CarService carService;
+    @GetMapping("manageCarRegistration")
+    public String manageCar(Model model) {
+        model.addAttribute("carList", carService.findAll());
         return "ManageCarRegistration";
     }
 
@@ -31,16 +28,11 @@ public class DataRegistrationController {
 
 
     @PostMapping("AddCar")
-        public String addCar (@RequestParam("model") String model, @RequestParam("brand") String brand, @RequestParam("frameNumber") int frameNumber ) {
+    public String addCar (@RequestParam("model") String model, @RequestParam("brand") String brand, @RequestParam("frameNumber") int frameNumber ) {
         Car car = new Car(model, brand, frameNumber);
-
-        dataRegistrationService.addCar(car);
-
-        return "DataRegistration";
-        }
+        carService.addCar(car);
+        return "redirect:/manageCarRegistration";
     }
 
 
-
-
-
+}

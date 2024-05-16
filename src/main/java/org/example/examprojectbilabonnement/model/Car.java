@@ -6,6 +6,9 @@ public class Car {
     private String brand;
     private int frameNumber;
 
+    public Car(){
+
+    }
     public Car(int carNumberID, String model, String brand, int frameNumber) {
         this.carNumberID = carNumberID;
         this.model = model;
