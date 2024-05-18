@@ -25,4 +25,16 @@ public class CarRepo {
         final String DELETE_SQL = "DELETE FROM bilabonnementhamsa.car WHERE carNumberID = ?";
         jdbcTemplate.update(DELETE_SQL, carNumberId);
     }
+
+    public Car findByID(int carNumberID){
+       final String SELECT_BYID_SQL ="SELECT * FROM bilabonnementhamsa.car where carNumberID = ?";
+       Car test45 =  jdbcTemplate.queryForObject(SELECT_BYID_SQL, new BeanPropertyRowMapper<>(Car.class), carNumberID);
+       return test45;
+    }
+
+    public void updateByID(Car car){
+        final String UPDATE_SQL = "UPDATE bilabonnementhamsa.car SET model = ?, brand = ?, frameNumber = ? WHERE carNumberID = ?";
+        jdbcTemplate.update(UPDATE_SQL, car.getModel(), car.getBrand(), car.getFrameNumber(), car.getCarNumberID());
+
+    }
 }

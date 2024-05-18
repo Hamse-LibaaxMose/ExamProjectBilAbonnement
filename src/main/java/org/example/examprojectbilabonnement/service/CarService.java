@@ -22,4 +22,12 @@ public class CarService {
         carRepo.deleteCarByCarNumberID(carNumberId);
     }
 
+    public Car findByID(int carNumberID){
+        return carRepo.findByID(carNumberID);
+
+    }
+    public void updateCar(Car car){
+         carRepo.updateByID(car);
+    }
+
 }
