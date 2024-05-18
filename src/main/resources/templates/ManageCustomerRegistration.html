@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Customer registration</title>
+    <link rel="stylesheet" type="text/css" href="/static/Styles.css" th:href="@{Styles.css}">
+</head>
+<body>
+<h1>
+    Manage customer registration
+</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Adress</th>
+        <th>Mail</th>
+        <th>PhoneNumber</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="customer:${customerList}">
+        <td th:text="${customer.name}"></td>
+        <td th:text="${customer.adress}"></td>
+        <td th:text="@{customer.mail}"></td>
+        <td th:text="${customer.phoneNumber}"></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <h3>Create new customer</h3>
+    <a href="AddCustomer.html" th:href="@{/showAddCustomerPage}">Click to create a new customer</a>
+</div>
+</body>
+</html>

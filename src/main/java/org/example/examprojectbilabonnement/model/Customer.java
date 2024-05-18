@@ -15,6 +15,20 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
+    public Customer(){
+
+    }
+
+    public Customer(String name, String adress, String mail, String phoneNumber) {
+        this.name = name;
+        this.adress = adress;
+        this.mail = mail;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Customer(String name, String adress, String mail) {
+    }
+
     public int getCustomerID() {
         return customerID;
     }
