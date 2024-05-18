@@ -18,7 +18,11 @@ public class CarRepo {
         return jdbcTemplate.query(SELECT_SQL, new BeanPropertyRowMapper<>(Car.class));
     }
     public void addCar(Car car) {
-        final String INSERT_SQL = "INSERT INTO car( model, brand, frameNumber) VALUES(?,?,?)";
+        final String INSERT_SQL = "INSERT INTO bilabonnementhamsa.car( model, brand, frameNumber) VALUES(?,?,?)";
         jdbcTemplate.update(INSERT_SQL, car.getModel(), car.getBrand(), car.getFrameNumber());
+    }
+    public void deleteCarByCarNumberID(int carNumberId){
+        final String DELETE_SQL = "DELETE FROM bilabonnementhamsa.car WHERE carNumberID = ?";
+        jdbcTemplate.update(DELETE_SQL, carNumberId);
     }
 }

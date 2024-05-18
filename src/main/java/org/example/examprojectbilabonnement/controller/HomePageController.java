@@ -9,7 +9,7 @@ public class HomePageController {
     public String indexHomePage(){
         return "Homepage";
     }
-    @GetMapping("showDataPage")
+    @GetMapping("/showDataPage")
     public String showDataPage() {
         return "DataRegistration";
     }

@@ -18,5 +18,8 @@ public class CarService {
     public void addCar(Car car){
         carRepo.addCar(car);
     }
+    public void deleteCar(int carNumberId){
+        carRepo.deleteCarByCarNumberID(carNumberId);
+    }
 
 }
