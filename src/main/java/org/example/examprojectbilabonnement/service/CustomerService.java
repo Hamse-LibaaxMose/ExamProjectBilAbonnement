@@ -19,4 +19,8 @@ public class CustomerService {
         customerRepo.addCustomer(customer);
     }
 
+    public void deleteCustomer(int customerID){
+        customerRepo.deleteCustomerByCustomerID(customerID);
+    }
+
 }

@@ -25,6 +25,11 @@ public class CustomerRepo {
 
     }
 
+    public void deleteCustomerByCustomerID(int customerID){
+        final String DELETE_SQL = "DELETE FROM bilabonnementhamsa.customer WHERE customerID = ?";
+        jdbcTemplate.update(DELETE_SQL, customerID);
+    }
+
 
 
 }
