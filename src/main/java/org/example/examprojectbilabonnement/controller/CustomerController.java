@@ -35,9 +35,28 @@ public class CustomerController {
         customerService.addCustomer(customer);
         return "redirect:/manageCustomerRegistration";
     }
+
     @GetMapping("deleteCustomer/{customerID}")
-public String deleteCustomer(@PathVariable("customerID") int customerID) {
+    public String deleteCustomer(@PathVariable("customerID") int customerID) {
         customerService.deleteCustomer(customerID);
+        return "redirect:/manageCustomerRegistration";
+    }
+
+    @GetMapping("/showCustomerUpdatePage/{customerID}")
+    public String showUpdatePage(@PathVariable("customerID") int customerID, Model model) {
+        model.addAttribute("customer", customerService.findByID(customerID));
+        return "UpdateCustomer";
+    }
+
+    @PostMapping("/updateCustomer")
+    public String updateCustomer(@RequestParam("customerID") int customerID,
+                                 @RequestParam("name") String name,
+                                 @RequestParam("adress") String adress,
+                                 @RequestParam("mail") String mail,
+                                 @RequestParam("phoneNumber") String phoneNumber) {
+
+        Customer customer = new Customer(customerID, name, adress, mail, phoneNumber);
+        customerService.updateCustomer(customer);
         return "redirect:/manageCustomerRegistration";
     }
 }

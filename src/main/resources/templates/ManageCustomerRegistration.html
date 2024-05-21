@@ -16,6 +16,7 @@
         <th>Adress</th>
         <th>Mail</th>
         <th>PhoneNumber</th>
+        <th>Update</th>
         <th>Delete</th>
     </tr>
     </thead>
@@ -26,7 +27,9 @@
         <td th:text="${customer.adress}"></td>
         <td th:text="${customer.mail}"></td>
         <td th:text="${customer.phoneNumber}"></td>
+        <td><a href="/showCustomerUpdatePage" th:href="@{'/showCustomerUpdatePage/'+ ${customer.customerID}}">Update</a></td>
         <td><a href="/deleteCustomer" th:href="@{'/deleteCustomer/'+ ${customer.customerID}}">Delete</a></td>
+
     </tr>
     </tbody>
 </table>

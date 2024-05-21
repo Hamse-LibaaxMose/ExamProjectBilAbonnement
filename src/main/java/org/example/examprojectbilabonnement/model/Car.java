@@ -54,4 +54,7 @@ public class Car {
         this.frameNumber = frameNumber;
     }
 
+    public String displayCarInfo(){
+        return model + " / " + frameNumber;
+    }
 }

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Car</title>
+</head>
+<body>
+<h1>
+    Update Customer
+</h1>
+
+<div>
+    <form action="/updateCustomer" method="post">
+
+        <input type="hidden" id="customerID-field" name="customerID" th:value="${customer.customerID}">
+
+        <label for="name-field">Name: </label>
+        <input type="text" id="name-field" name="name" th:value="${customer.name}">
+
+        <label for="adress-field">Adress: </label>
+        <input type="text" id="adress-field" name="adress" th:value="${customer.adress}">
+
+        <label for="mail-field">Mail: </label>
+        <input type="email" id="mail-field" name="mail" th:value="${customer.mail}">
+
+        <label for="phoneNumber-field">PhoneNumber: </label>
+        <input type="number" id="phoneNumber-field" name="phoneNumber" th:value="${customer.phoneNumber}">
+
+        <input type="submit" value="Update customer">
+    </form>
+</div>
+
+</body>
+</html>

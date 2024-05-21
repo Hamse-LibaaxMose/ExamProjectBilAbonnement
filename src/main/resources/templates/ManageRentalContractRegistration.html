@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Rental Contract registration</title>
+  <link rel="stylesheet" type="text/css" href="/static/Styles.css" th:href="@{Styles.css}">
+</head>
+<body>
+<h1>
+  Manage Rental Contract registration
+</h1>
+<table>
+  <thead>
+  <tr>
+    <th>CustomerName</th>
+    <th>StartDate</th>
+    <th>EndDate</th>
+    <th>Price</th>
+    <th>SubscriptionName</th>
+    <th>CarModelName</th>
+    <th>CarFrameNumber</th>
+    <th>PickupLocationName</th>
+    <th>DeliveryLocationName</th>
+    <th>Delete</th>
+    <th>Update</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr th:each="contract:${contractList}">
+    <td th:text="${contract.customerName}"></td>
+    <td th:text="${contract.startDate}"></td>
+    <td th:text="${contract.endDate}"></td>
+    <td th:text="${contract.price}"></td>
+    <td th:text="${contract.subscriptionName}"></td>
+    <td th:text="${contract.carModelName}"></td>
+    <td th:text="${contract.carFrameNumber}"></td>
+    <td th:text="${contract.pickupLocationName}"></td>
+    <td th:text="${contract.deliveryLocationName}"></td>
+    <td><a href="/showRentalContractUpdatePage" th:href="@{'/showRentalContractUpdatePage/'+ ${contract.rentalContractID}}">Update</a></td>
+    <td><a >Delete</a></td>
+  </tr>
+  </tbody>
+</table>
+<div>
+  <h3>Create new rental contract</h3>
+  <a href="AddRentalContract.html" th:href="@{/showRentalContractPage}">Click to create a new rental contract</a>
+</div>
+</body>
+</html>

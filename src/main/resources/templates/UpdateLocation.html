@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Car</title>
+</head>
+<body>
+<h1>
+    Update Location
+</h1>
+
+<div>
+    <form action="/updateLocation" method="post">
+
+        <input type="hidden" id="locationID-field" name="locationID" th:value="${location.locationID}">
+
+        <label for="name-field">Name: </label>
+        <input type="text" id="name-field" name="name" th:value="${location.name}">
+
+        <label for="city-field">City: </label>
+        <input type="text" id="city-field" name="city" th:value="${location.city}">
+
+        <label for="zipCode-field">zipCode: </label>
+        <input type="number" id="zipCode-field" name="zipCode" th:value="${location.zipCode}">
+
+        <label for="adress-field">Adress: </label>
+        <input type="text" id="adress-field" name="adress" th:value="${location.adress}">
+
+        <input type="submit" value="Update Location">
+    </form>
+</div>
+
+</body>
+</html>

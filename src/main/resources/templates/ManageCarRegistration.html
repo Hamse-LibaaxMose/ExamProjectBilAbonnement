@@ -17,14 +17,14 @@
         <th>FrameNumber</th>
         <th>Update</th>
         <th>Delete</th>
-    </tr>▼
+    </tr>
     </thead>
     <tbody>
     <tr th:each="car: ${carList}">
         <td th:text="${car.model}"></td>
         <td th:text="${car.brand}"></td>
         <td th:text="${car.frameNumber}"></td>
-        <td><a href="/showUpdatePage" th:href="@{'/showUpdatePage/'+ ${car.carNumberID}}">Update</a></td>
+        <td><a href="/showCarUpdatePage" th:href="@{'/showCarUpdatePage/'+ ${car.carNumberID}}">Update</a></td>
         <td><a href="/deleteCar" th:href="@{'/deleteCar/'+ ${car.carNumberID}}">Delete</a></td>
     </tr>
     </tbody>

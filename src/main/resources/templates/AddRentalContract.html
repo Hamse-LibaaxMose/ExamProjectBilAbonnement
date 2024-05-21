@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Rental Contract</title>
+</head>
+<body>
+<h1>
+    Add Rental Contract
+</h1>
+
+<div>
+    <form action="/addRentalContract" method="post">
+        <label for="startDate-field">startDate: </label>
+        <input type="date" id="startDate-field" name="startDate">
+
+        <label for="endDate-field">endDate: </label>
+        <input type="date" id="endDate-field" name="endDate">
+
+        <label for="price-field">price: </label>
+        <input type="number" id="price-field" name="price">
+
+        <label for="customerID-field">customer: </label>
+        <select id="customerID-field" name="customerID" required>
+            <option value="" disabled selected>Select a Customer</option>
+            <option th:each="customer:${customerList}" th:value="${customer.customerID}" th:text="${customer.name}"></option>
+        </select>
+
+        <label for="subscriptionID-field">subscription: </label>
+        <select  id="subscriptionID-field" name="subscriptionID" required>
+            <option value="" disabled selected>Select a Subscription</option>
+            <option value="1">Limited</option>
+            <option value="2">Unlimited</option>
+        </select>
+
+
+        <label for="carNumberID-field">carNumber: </label>
+        <select id="carNumberID-field" name="carNumberID" required>
+            <option value="" disabled selected>Select a Car</option>
+            <option th:each="car:${carList}" th:value="${car.carNumberID}" th:text="${car.displayCarInfo()}"></option>
+        </select>
+
+        <label for="pickupLocationID-field">pickupLocation: </label>
+        <select id="pickupLocationID-field" name="pickupLocationID" required>
+            <option value="" disabled selected>Select a pickup LocationI</option>
+            <option th:each="location:${locationList}" th:value="${location.locationID}" th:text="${location.name}"></option>
+        </select>
+
+        <label for="deliveryLocationID-field">deliveryLocation: </label>
+        <select id="deliveryLocationID-field" name="deliveryLocationID" required>
+            <option value="" disabled selected>Select a delivery Location</option>
+            <option th:each="location:${locationList}" th:value="${location.locationID}" th:text="${location.name}"></option>
+        </select>
+
+        <input type="submit" value="Add Rental Contract">
+    </form>
+</div>
+
+</body>
+</html>

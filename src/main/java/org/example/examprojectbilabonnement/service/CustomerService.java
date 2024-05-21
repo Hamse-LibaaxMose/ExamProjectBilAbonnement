@@ -12,6 +12,7 @@ import java.util.List;
 public class CustomerService {
     @Autowired
     CustomerRepo customerRepo;
+
     public List<Customer> findAll(){
         return customerRepo.findAll();
     }
@@ -23,4 +24,16 @@ public class CustomerService {
         customerRepo.deleteCustomerByCustomerID(customerID);
     }
 
+    public Customer findByID(int customerID){
+        return customerRepo.findByID(customerID);
+    }
+
+    public void updateCustomer(Customer customer){
+        customerRepo.updateByID(customer);
+    }
+
+
+
 }
+
+

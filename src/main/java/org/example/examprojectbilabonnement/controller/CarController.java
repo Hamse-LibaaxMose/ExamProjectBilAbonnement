@@ -42,14 +42,18 @@ public class CarController {
         return "redirect:/manageCarRegistration";
     }
 
-    @GetMapping("/showUpdatePage/{carNumberID}")
+    @GetMapping("/showCarUpdatePage/{carNumberID}")
     public String showUpdatePage(@PathVariable("carNumberID") int carNumberID, Model model) {
         model.addAttribute("car", carService.findByID(carNumberID));
         return "UpdateCar";
     }
 
-    @PostMapping("updateCar")
-    public String updateCar(@RequestParam("carNumberID") int carNumberID, @RequestParam("model") String model, @RequestParam("brand") String brand, @RequestParam("frameNumber") int frameNumber) {
+    @PostMapping("/updateCar")
+    public String updateCar(@RequestParam("carNumberID") int carNumberID,
+                            @RequestParam("model") String model,
+                            @RequestParam("brand") String brand,
+                            @RequestParam("frameNumber") int frameNumber) {
+
         Car car = new Car(carNumberID, model, brand, frameNumber);
         carService.updateCar(car);
         return "redirect:/manageCarRegistration";

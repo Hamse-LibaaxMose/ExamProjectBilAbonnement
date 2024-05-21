@@ -29,6 +29,10 @@ public class Customer {
     public Customer(String name, String adress, String mail) {
     }
 
+    public Customer(int customerID, String name, String adress, String mail) {
+    }
+
+
     public int getCustomerID() {
         return customerID;
     }

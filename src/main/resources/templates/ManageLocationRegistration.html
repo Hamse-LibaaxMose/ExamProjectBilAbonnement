@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Location registration</title>
+    <link rel="stylesheet" type="text/css" href="/static/Styles.css" th:href="@{Styles.css}">
+</head>
+<body>
+<h1>
+    Manage location registration
+</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>City</th>
+        <th>zipCode</th>
+        <th>adress</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="location:${locationList}">
+        <td th:text="${location.name}"></td>
+        <td th:text="${location.city}"></td>
+        <td th:text="${location.zipCode}"></td>
+        <td th:text="${location.adress}"></td>
+
+         <td><a href="/showLocationUpdatePage" th:href="@{'/showLocationUpdatePage/'+ ${location.locationID}}">Update</a></td>
+        <td><a href="/deleteLocation" th:href="@{'/deleteLocation/'+ ${location.locationID}}">Delete</a></td>
+
+    </tr>
+    </tbody>
+</table>
+<div>
+    <h3>Create new location</h3>
+    <a href="AddLocation.html" th:href="@{/showAddLocationPage}">Click to create a new location</a>
+</div>
+</body>
+</html>
