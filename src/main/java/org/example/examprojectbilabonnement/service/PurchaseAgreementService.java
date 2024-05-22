@@ -8,4 +8,9 @@ import org.springframework.stereotype.Service;
 public class PurchaseAgreementService {
     @Autowired
     PurchaseAgreementRepo purchaseAgreementRepo;
+
+
+    public int addPurchaseAgreement(int customerID){
+        return purchaseAgreementRepo.addPurchaseAgreement(customerID);
+    }
 }

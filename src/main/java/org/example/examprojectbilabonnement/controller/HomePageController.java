@@ -15,6 +15,6 @@ public class HomePageController {
     }
     @GetMapping("/showDamageRepairPage")
     public String showDamageRepairPage() {
-        return "AddDamage&Repair";
+        return "DamageAndRepair";
     }
 }
