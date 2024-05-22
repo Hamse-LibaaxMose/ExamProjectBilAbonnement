@@ -13,4 +13,8 @@ public class HomePageController {
     public String showDataPage() {
         return "DataRegistration";
     }
+    @GetMapping("/showDamageRepairPage")
+    public String showDamageRepairPage() {
+        return "AddDamage&Repair";
+    }
 }

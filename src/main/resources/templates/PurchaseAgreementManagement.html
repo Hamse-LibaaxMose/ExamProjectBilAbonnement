@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Purchase Agreement</title>
+</head>
+<body>
+<h1>
+    Purchase Agreement Management
+</h1>
+
+<div th:each="rentalContract: ${endedRentalContractList}" style="border:1px solid black;cursor: pointer">
+    StartDate: <div th:text="${rentalContract.startDate}"></div>
+    <div th:text="${rentalContract.endDate}"></div>
+    <div th:text="${rentalContract.customerName}"></div>
+    <div th:text="${rentalContract.carModelName}"></div>
+    <div th:text="${rentalContract.carFrameNumber}"></div>
+</div>
+
+</body>
+</html>

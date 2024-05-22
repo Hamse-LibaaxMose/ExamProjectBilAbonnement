@@ -22,6 +22,12 @@ public class RentalContractService {
         rentalContractRepo.addRentalContract(rentalContract);
     }
 
+    public void deleteRentalContract(int rentalContractID){
+        rentalContractRepo.deleteRentalContractBYRentalID(rentalContractID);
+    }
+
+
+
     public RentalContract findByID(int rentalContractID) {
         return rentalContractRepo.findByID(rentalContractID);
     }
@@ -30,4 +36,7 @@ public class RentalContractService {
         rentalContractRepo.updateByID(rentalContract);
     }
 
+    public List<RentalContractView> getEndedRentalContract() {
+        return rentalContractRepo.getEndedRentalContract();
+    }
 }

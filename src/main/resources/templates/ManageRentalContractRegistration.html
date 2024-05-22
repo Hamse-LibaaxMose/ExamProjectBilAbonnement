@@ -12,15 +12,15 @@
 <table>
   <thead>
   <tr>
-    <th>CustomerName</th>
-    <th>StartDate</th>
-    <th>EndDate</th>
+    <th>Customer Name</th>
+    <th>Start Date</th>
+    <th>End Date</th>
     <th>Price</th>
-    <th>SubscriptionName</th>
-    <th>CarModelName</th>
-    <th>CarFrameNumber</th>
-    <th>PickupLocationName</th>
-    <th>DeliveryLocationName</th>
+    <th>Subscription Name</th>
+    <th>Car Model Name</th>
+    <th>Car Frame Number</th>
+    <th>Pickup Location Name</th>
+    <th>Delivery Location Name</th>
     <th>Delete</th>
     <th>Update</th>
   </tr>
@@ -38,7 +38,7 @@
     <td th:text="${contract.pickupLocationName}"></td>
     <td th:text="${contract.deliveryLocationName}"></td>
     <td><a href="/showRentalContractUpdatePage" th:href="@{'/showRentalContractUpdatePage/'+ ${contract.rentalContractID}}">Update</a></td>
-    <td><a >Delete</a></td>
+    <td><a href="/deleteRentalContract" th:href="@{'/deleteRentalContract/'+ ${contract.rentalContractID}}">Delete</a></td>
   </tr>
   </tbody>
 </table>

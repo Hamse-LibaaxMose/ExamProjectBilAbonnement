@@ -35,6 +35,12 @@ public class RentalContractRepo {
                 rentalContract.getCarNumberID(), rentalContract.getPickupLocationID(), rentalContract.getDeliveryLocationID());
     }
 
+    public void deleteRentalContractBYRentalID(int rentalContractID){
+        final String DELETE_SQL ="DELETE FROM bilabonnementhamsa.rentalContract WHERE rentalContractID = ?";
+        jdbcTemplate.update(DELETE_SQL, rentalContractID );
+    }
+
+
     public RentalContract findByID(int rentalContractID) {
         final String SELECT_BYID_SQL = "SELECT * FROM bilabonnementhamsa.rentalcontract WHERE rentalContractID = ?";
         return jdbcTemplate.queryForObject(SELECT_BYID_SQL, new BeanPropertyRowMapper<>(RentalContract.class), rentalContractID);
@@ -45,6 +51,17 @@ public class RentalContractRepo {
         final String UPDATE_SQL = "UPDATE bilabonnementhamsa.rentalContract SET startDate = ?, endDate = ?, price = ?, customerID = ?, subscriptionID = ?, carNumberID =?, pickupLocationID = ?, deliveryLocationID = ? WHERE rentalContractID = ?";
         jdbcTemplate.update(UPDATE_SQL, rentalContract.getStartDate(), rentalContract.getEndDate(), rentalContract.getPrice(), rentalContract.getCustomerID(), rentalContract.getSubscriptionID(), rentalContract.getCarNumberID(), rentalContract.getPickupLocationID(), rentalContract.getDeliveryLocationID(), rentalContract.getRentalContractID());
     }
+
+    public List<RentalContractView> getEndedRentalContract() {
+        final String SELECT_ENDED_SQL = "SELECT rc.*, c.name customerName, ca.model carModelName, ca.frameNumber carFrameNumber\n" +
+                "FROM bilabonnementhamsa.rentalcontract rc\n" +
+                "join bilabonnementhamsa.customer c on c.customerId = rc.customerId\n" +
+                "join bilabonnementhamsa.car ca on ca.carNumberID = rc.carNumberID\n" +
+                "where rc.endDate <= now()\n";
+        return jdbcTemplate.query(SELECT_ENDED_SQL, new BeanPropertyRowMapper<>(RentalContractView.class));
+    }
+
+
 
 
 }

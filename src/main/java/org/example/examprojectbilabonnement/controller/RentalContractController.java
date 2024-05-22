@@ -30,7 +30,7 @@ public class RentalContractController {
     @Autowired
     LocationService locationService;
 
-    @GetMapping("/manageContractRegistration")
+    @GetMapping("/manageRentalContractRegistration")
     public String manageCustomer(Model model) {
         model.addAttribute("contractList", rentalContractService.findAll());
         return "ManageRentalContractRegistration";
@@ -55,8 +55,16 @@ public class RentalContractController {
                                     @RequestParam("deliveryLocationID") int deliveryLocationID) {
         RentalContract rentalContract = new RentalContract(startDate, endDate, price, customerID, subscriptionID, carNumberID, pickupLocationID, deliveryLocationID);
         rentalContractService.addRentalContract(rentalContract);
-        return "redirect:/manageContractRegistration";
+        return "redirect:/manageRentalContractRegistration";
     }
+
+    @GetMapping("deleteRentalContract/{rentalContractID}")
+    public String deleteRentalContract(@PathVariable("rentalContractID") int rentalContractID){
+        rentalContractService.deleteRentalContract(rentalContractID);
+        return "redirect:/manageRentalContractRegistration";
+    }
+
+
 
     @GetMapping("/showRentalContractUpdatePage/{rentalContractID}")
     public String showUpdatePage(@PathVariable("rentalContractID") int rentalContractID, Model model) {
@@ -81,7 +89,7 @@ public class RentalContractController {
 
         rentalContractService.updateRentalContract(rentalContract);
 
-        return "redirect:/manageContractRegistration";
+        return "redirect:/manageRentalContractRegistration";
 
 
     }
