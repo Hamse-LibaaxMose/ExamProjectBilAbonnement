@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Damage Type</title>
+</head>
+<body>
+<h1>Update Damage Type</h1>
+<form action="#" th:action="@{/updateDamageType}" method="post">
+    <input type="hidden" id="damageTypeID-field" name="damageTypeID" th:value="${damageType.damageTypeID}" />
+    <label for="name-field">Name: </label>
+    <input type="text" id="name-field" name="name"  th:value="${damageType.name}">
+    <label for="price-field">Price:</label>
+    <input type="number" id="price-field" name="price" th:value="${damageType.price}">
+    <button type="submit">Add Damage Type</button>
+</form>
+</body>
+</html>
