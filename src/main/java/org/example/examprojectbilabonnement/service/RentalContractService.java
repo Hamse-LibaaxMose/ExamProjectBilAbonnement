@@ -39,4 +39,8 @@ public class RentalContractService {
     public List<RentalContractView> getEndedRentalContract() {
         return rentalContractRepo.getEndedRentalContract();
     }
+
+    public void updatePurchaseOptionalStatus(int rentalContractID, int purchaseOptional){
+        rentalContractRepo.updatePurchaseOptionalStatus(rentalContractID, purchaseOptional);
+    }
 }

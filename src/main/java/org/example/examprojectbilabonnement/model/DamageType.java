@@ -44,4 +44,8 @@ public class DamageType {
     public void setPrice(int price) {
         this.price = price;
     }
+
+    public String displayDamageType(){
+        return this.name + " / " + this.price;
+    }
 }

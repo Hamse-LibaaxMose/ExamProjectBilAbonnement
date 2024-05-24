@@ -9,19 +9,24 @@
     Purchase Agreement Management
 </h1>
 <div style="display: flex; gap: 15px">
-<div th:each="rentalContract: ${endedRentalContractList}" style="border:1px solid black;cursor: pointer;padding: 15px">
-    <strong>Rental Contract</strong>
-    <div th:text="${rentalContract.startDate}"></div>
-    <div th:text="${rentalContract.endDate}"></div>
-    <div th:text="${rentalContract.customerName}"></div>
-    <div th:text="${rentalContract.carModelName}"></div>
-    <div th:text="${rentalContract.carFrameNumber}"></div>
-    <div>
-    <form th:action="@{'/managePurchaseAgreement/'+ ${rentalContract.customerID}}" method="get">
-        <button>Purchase</button>
-    </form>
+    <div th:each="rentalContract: ${endedRentalContractList}"
+         style="border:1px solid black;cursor: pointer;padding: 15px">
+        <strong>Rental Contract</strong>
+        <div th:text="${rentalContract.startDate}"></div>
+        <div th:text="${rentalContract.endDate}"></div>
+        <div th:text="${rentalContract.customerName}"></div>
+        <div th:text="${rentalContract.carModelName}"></div>
+        <div th:text="${rentalContract.carFrameNumber}"></div>
+        <div>
+            <form th:action="@{'/closeContract/'+ ${rentalContract.rentalContractID}}" method="get">
+                <button>Close Rental Contract</button>
+            </form>
+            <form th:action="@{'/managePurchaseAgreement/'+ ${rentalContract.customerID}+ '/' +${rentalContract.rentalContractID}}"
+                  method="get">
+                <button>Purchase Car</button>
+            </form>
+        </div>
     </div>
-</div>
 </div>
 </body>
 </html>

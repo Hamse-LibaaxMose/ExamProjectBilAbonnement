@@ -47,7 +47,6 @@ public class RentalContractRepo {
     }
 
     public void updateByID(RentalContract rentalContract) {
-        System.out.println(rentalContract);
         final String UPDATE_SQL = "UPDATE bilabonnementhamsa.rentalContract SET startDate = ?, endDate = ?, price = ?, customerID = ?, subscriptionID = ?, carNumberID =?, pickupLocationID = ?, deliveryLocationID = ? WHERE rentalContractID = ?";
         jdbcTemplate.update(UPDATE_SQL, rentalContract.getStartDate(), rentalContract.getEndDate(), rentalContract.getPrice(), rentalContract.getCustomerID(), rentalContract.getSubscriptionID(), rentalContract.getCarNumberID(), rentalContract.getPickupLocationID(), rentalContract.getDeliveryLocationID(), rentalContract.getRentalContractID());
     }
@@ -57,11 +56,14 @@ public class RentalContractRepo {
                 "FROM bilabonnementhamsa.rentalcontract rc\n" +
                 "join bilabonnementhamsa.customer c on c.customerId = rc.customerId\n" +
                 "join bilabonnementhamsa.car ca on ca.carNumberID = rc.carNumberID\n" +
-                "where rc.endDate <= now()\n";
+                "where rc.endDate <= now()\n and purchaseOptional is null";
         return jdbcTemplate.query(SELECT_ENDED_SQL, new BeanPropertyRowMapper<>(RentalContractView.class));
     }
 
-
+    public void updatePurchaseOptionalStatus(int rentalContractID, int purchaseOptional){
+        final String UPDATE_SQL = "UPDATE bilabonnementhamsa.rentalContract SET purchaseOptional = ? WHERE rentalContractID = ?";
+        jdbcTemplate.update(UPDATE_SQL, purchaseOptional, rentalContractID);
+    }
 
 
 }

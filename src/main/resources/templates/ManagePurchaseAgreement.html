@@ -3,10 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Manage Purchase Agreement</title>
+    <link rel="stylesheet" type="text/css" href="/static/Styles.css" th:href="@{Styles.css}">
 </head>
 <body>
 <h1>
     Manage Purchase Agreement
 </h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>name</th>
+        <th>price</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="purchaseAgreementDamageType: ${purchaseAgreementDamageTypeList}">
+        <td th:text="${purchaseAgreementDamageType.name}"></td>
+        <td th:text="${purchaseAgreementDamageType.price}"></td>
+        <td><a href="/deleteDamageTypeFromPurchaseAgreement"
+               th:href="@{'/deleteDamageTypeFromPurchaseAgreement/'+ ${purchaseAgreementDamageType.purchaseAgreement_damageTypeID}
+                    +'/'+${purchaseAgreementDamageType.purchaseAgreementID} + '/' + ${rentalContractID}}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <h3>Choose Damage Type</h3>
+    <form action="/addDamageTypeToPurchaseAgreement" method="post">
+    <input type="hidden" id="purchaseAgreementID-field" name="purchaseAgreementID" th:value="${purchaseAgreementID}">
+        <input type="hidden" id="rentalContractId-field" name="rentalContractID" th:value="${rentalContractID}">
+    <select id="damageTypeID-field" name="damageTypeID" required>
+        <option value="" disabled selected>Select a damage type</option>
+        <option th:each="damageType:${damageTypeList}" th:value="${damageType.damageTypeID}" th:text="${damageType.displayDamageType()}"></option>
+    </select>
+    <input type="submit" value="Add Damage Type">
+    </form>
+</div>
+
+<div>
+    <h3>Choose Damage Type</h3>
+    <form action="/confirmPurchaseAgreement" method="post">
+        <input type="hidden" id="purchaseAgreement-field" name="purchaseAgreementID" th:value="${purchaseAgreementID}">
+        <input type="hidden" id="rentalContract-field" name="rentalContractID" th:value="${rentalContractID}">
+        <label for="exceedKm-field">ExceedKm Value: </label>
+        <input type="number" id="exceedKm-field" name="exceedKm">
+        <input type="submit" value="confirm Purchase Contract">
+    </form>
+</div>
 </body>
 </html>
