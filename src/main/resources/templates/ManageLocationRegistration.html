@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Manage Location registration</title>
-    <link rel="stylesheet" type="text/css" href="/static/Styles.css" th:href="@{Styles.css}">
+    <link rel="stylesheet" type="text/css" href="/static/Styles.css" th:href="@{ManageRegistrationStyles.css}">
 </head>
 <body>
 <h1>
@@ -28,7 +28,8 @@
         <td th:text="${location.zipCode}"></td>
         <td th:text="${location.adress}"></td>
 
-         <td><a href="/showLocationUpdatePage" th:href="@{'/showLocationUpdatePage/'+ ${location.locationID}}">Update</a></td>
+        <td><a href="/showLocationUpdatePage" th:href="@{'/showLocationUpdatePage/'+ ${location.locationID}}">Update</a>
+        </td>
         <td><a href="/deleteLocation" th:href="@{'/deleteLocation/'+ ${location.locationID}}">Delete</a></td>
 
     </tr>
@@ -36,7 +37,11 @@
 </table>
 <div>
     <h3>Create new location</h3>
-    <a href="AddLocation.html" th:href="@{/showAddLocationPage}">Click to create a new location</a><br>
+</div>
+<div>
+    <a href="AddLocation.html" th:href="@{/showAddLocationPage}">Click to create a new location</a>
+</div>
+<div>
     <a th:href="@{/showDataPage}">return to page</a>
 </div>
 </body>

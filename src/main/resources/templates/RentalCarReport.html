@@ -3,40 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <title>Rental Car Report</title>
-    <link rel="stylesheet" type="text/css" href="/static/Styles.css" th:href="@{Styles.css}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #0044cc;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            max-width: 800px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #0044cc;
+            color: #ffffff;
+        }
+
+        tr:hover {
+            background-color: #e0eaff;
+        }
+
+        .total-price {
+            font-size: 1.5em;
+            color: #0044cc;
+            margin-top: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #0044cc;
+            font-size: 1em;
+            margin-top: 20px;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #003399;
+        }
+
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 800px;
+        }
+    </style>
 </head>
 <body>
 <h1>
     Rental Car Report
 </h1>
+<div class="container">
+    <table>
+        <thead>
+        <tr>
+            <th>Customer Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Price</th>
+            <th>Subscription Name</th>
+            <th>Car Model Name</th>
+            <th>Car Frame Number</th>
+            <th>Rental Status</th>
+        </tr>
+        </thead>
+        <tbody>
 
-<table>
-    <thead>
-    <tr>
-        <th>Customer Name</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-        <th>Price</th>
-        <th>Subscription Name</th>
-        <th>Car Model Name</th>
-        <th>Car Frame Number</th>
-        <th>Rental Status</th>
-    </tr>
-    </thead>
-    <tbody>
-
-    <tr th:each="contract:${rentalContractList}">
-        <td th:text="${contract.customerName}"></td>
-        <td th:text="${contract.startDate}"></td>
-        <td th:text="${contract.endDate}"></td>
-        <td th:text="${contract.price}"></td>
-        <td th:text="${contract.subscriptionName}"></td>
-        <td th:text="${contract.carModelName}"></td>
-        <td th:text="${contract.carFrameNumber}"></td>
-        <td th:text="${contract.rentalStatus}"></td>
-    </tr>
-    </tbody>
-</table>
-<h3 th:text="'The total price is ' + ${totalPrice}"></h3>
+        <tr th:each="contract:${rentalContractList}">
+            <td th:text="${contract.customerName}"></td>
+            <td th:text="${contract.startDate}"></td>
+            <td th:text="${contract.endDate}"></td>
+            <td th:text="${contract.price}"></td>
+            <td th:text="${contract.subscriptionName}"></td>
+            <td th:text="${contract.carModelName}"></td>
+            <td th:text="${contract.carFrameNumber}"></td>
+            <td th:text="${contract.rentalStatus}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <h3 class="total-price" th:text="'The total price is ' + ${totalPrice}"></h3>
+    </div>
+    <div>
+        <a th:href="@{/showBusinessDeveloperPage}">return to page</a>
+    </div>
+</div>
 </body>
 </html>

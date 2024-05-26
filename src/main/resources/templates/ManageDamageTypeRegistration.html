@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Manage Damage Types</title>
-    <link rel="stylesheet" type="text/css" href="/static/Styles.css" th:href="@{Styles.css}">
+    <link rel="stylesheet" type="text/css" href="/static/Styles.css" th:href="@{ManageRegistrationStyles.css}">
 </head>
 <body>
 <h1>Manage Damage Types</h1>
@@ -20,14 +20,20 @@
     <tr th:each="damageType: ${damageTypeList}">
         <td th:text="${damageType.name}"></td>
         <td th:text="${damageType.price}"></td>
-        <td><a href="/showDamageTypeUpdatePage" th:href="@{'/showDamageTypeUpdatePage/'+ ${damageType.damageTypeID}}">Update</a></td>
+        <td><a href="/showDamageTypeUpdatePage" th:href="@{'/showDamageTypeUpdatePage/'+ ${damageType.damageTypeID}}">Update</a>
+        </td>
         <td><a href="/deleteDamageType" th:href="@{'/deleteDamageType/'+ ${damageType.damageTypeID}}">Delete</a></td>
     </tr>
     </tbody>
 </table>
 <div>
     <h3>Create Damage Type</h3>
-    <a th:href="@{/showDataPage}">return to page</a>
+</div>
+<div>
+    <a href="AddDamageType.html" th:href="@{/showAddDamageTypePage}">Click to create a new damage type</a>
+</div>
+<div>
+    <a th:href="@{/showDamageRepairPage}">return to page</a>
 </div>
 </body>
 </html>

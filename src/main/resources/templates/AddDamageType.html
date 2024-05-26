@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <title>Add Damage Type</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/AddUpdateStyles.css}">
 </head>
 <body>
 <h1>Add Damage Type</h1>
@@ -10,7 +11,8 @@
     <input type="text" id="name-field" name="name">
     <label for="price-field">Price:</label>
     <input type="number" id="price-field" name="price"/>
-    <button type="submit">Add Damage Type</button>
+    <input type="submit" value="Add Damage Type">
 </form>
+<a th:href="@{/manageDamageTypeRegistration}">return to page</a>
 </body>
 </html>

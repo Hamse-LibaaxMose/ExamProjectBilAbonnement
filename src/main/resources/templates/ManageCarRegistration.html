@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Manage Car registration</title>
-    <link rel="stylesheet" type="text/css" href="/static/Styles.css" th:href="@{Styles.css}">
+    <link rel="stylesheet" type="text/css" href="/static/Styles.css" th:href="@{ManageRegistrationStyles.css}">
 </head>
 <body>
 <h1>
@@ -31,8 +31,12 @@
 </table>
 <div>
     <h3>Create new Car</h3>
+</div>
+<div>
     <a href="AddCar.html" th:href="@{/showAddCarPage}">Click to create new car</a>
 </div>
-<a th:href="@{/showDataPage}">return to page</a>
+<div>
+    <a th:href="@{/showDataPage}">return to page</a>
+</div>
 </body>
 </html>

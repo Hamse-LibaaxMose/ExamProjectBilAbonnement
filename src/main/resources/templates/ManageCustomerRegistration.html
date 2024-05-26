@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Manage Customer registration</title>
-    <link rel="stylesheet" type="text/css" href="/static/Styles.css" th:href="@{Styles.css}">
+    <link rel="stylesheet" type="text/css" href="/static/Styles.css" th:href="@{ManageRegistrationStyles.css}">
 </head>
 <body>
 <h1>
@@ -29,13 +29,16 @@
         <td th:text="${customer.phoneNumber}"></td>
         <td><a href="/showCustomerUpdatePage" th:href="@{'/showCustomerUpdatePage/'+ ${customer.customerID}}">Update</a></td>
         <td><a href="/deleteCustomer" th:href="@{'/deleteCustomer/'+ ${customer.customerID}}">Delete</a></td>
-
     </tr>
     </tbody>
 </table>
 <div>
     <h3>Create new customer</h3>
-    <a href="AddCustomer.html" th:href="@{/showAddCustomerPage}">Click to create a new customer</a><br>
+</div>
+<div>
+    <a href="AddCustomer.html" th:href="@{/showAddCustomerPage}">Click to create a new customer</a>
+</div>
+<div>
     <a th:href="@{/showDataPage}">return to page</a>
 </div>
 </body>
