@@ -17,4 +17,8 @@ public class HomePageController {
     public String showDamageRepairPage() {
         return "DamageAndRepair";
     }
+    @GetMapping("/showBusinessDeveloperPage")
+    public String showBusinessDeveloperPage() {
+        return "BusinessDeveloper";
+    }
 }

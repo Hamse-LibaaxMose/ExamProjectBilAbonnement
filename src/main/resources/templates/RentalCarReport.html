@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rental Car Report</title>
+    <link rel="stylesheet" type="text/css" href="/static/Styles.css" th:href="@{Styles.css}">
+</head>
+<body>
+<h1>
+    Rental Car Report
+</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Customer Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Price</th>
+        <th>Subscription Name</th>
+        <th>Car Model Name</th>
+        <th>Car Frame Number</th>
+        <th>Rental Status</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="contract:${rentalContractList}">
+        <td th:text="${contract.customerName}"></td>
+        <td th:text="${contract.startDate}"></td>
+        <td th:text="${contract.endDate}"></td>
+        <td th:text="${contract.price}"></td>
+        <td th:text="${contract.subscriptionName}"></td>
+        <td th:text="${contract.carModelName}"></td>
+        <td th:text="${contract.carFrameNumber}"></td>
+        <td th:text="${contract.rentalStatus}"></td>
+    </tr>
+    </tbody>
+</table>
+<h3 th:text="'The total price is ' + ${totalPrice}"></h3>
+</body>
+</html>

@@ -9,20 +9,33 @@ public class RentalContractView extends RentalContract{
     private String carFrameNumber;
     private String pickupLocationName;
     private String deliveryLocationName;
+    private String rentalStatus;
 
     public RentalContractView() {
     }
 
-    public RentalContractView(String customerName, String subscriptionName, String carModelName, String carFrameNumber, String pickupLocationName, String deliveryLocationName) {
+    public RentalContractView(String customerName, String subscriptionName, String carModelName, String carFrameNumber, String pickupLocationName, String deliveryLocationName, String rentalStatus) {
         this.customerName = customerName;
         this.subscriptionName = subscriptionName;
         this.carModelName = carModelName;
         this.carFrameNumber = carFrameNumber;
         this.pickupLocationName = pickupLocationName;
         this.deliveryLocationName = deliveryLocationName;
+        this.rentalStatus = rentalStatus;
     }
 
-    public RentalContractView(int rentalContractID, String startDate, String endDate, int price, int customerID, int subscriptionID, int carNumberID, int pickupLocationID, int deliveryLocationID, String customerName, String subscriptionName, String carModelName, String carFrameNumber, String pickupLocationName, String deliveryLocationName) {
+    public RentalContractView(String startDate, String endDate, int price, int customerID, int subscriptionID, int carNumberID, int pickupLocationID, int deliveryLocationID, String customerName, String subscriptionName, String carModelName, String carFrameNumber, String pickupLocationName, String deliveryLocationName, String rentalStatus) {
+        super(startDate, endDate, price, customerID, subscriptionID, carNumberID, pickupLocationID, deliveryLocationID);
+        this.customerName = customerName;
+        this.subscriptionName = subscriptionName;
+        this.carModelName = carModelName;
+        this.carFrameNumber = carFrameNumber;
+        this.pickupLocationName = pickupLocationName;
+        this.deliveryLocationName = deliveryLocationName;
+        this.rentalStatus = rentalStatus;
+    }
+
+    public RentalContractView(int rentalContractID, String startDate, String endDate, int price, int customerID, int subscriptionID, int carNumberID, int pickupLocationID, int deliveryLocationID, String customerName, String subscriptionName, String carModelName, String carFrameNumber, String pickupLocationName, String deliveryLocationName, String rentalStatus) {
         super(rentalContractID, startDate, endDate, price, customerID, subscriptionID, carNumberID, pickupLocationID, deliveryLocationID);
         this.customerName = customerName;
         this.subscriptionName = subscriptionName;
@@ -30,8 +43,15 @@ public class RentalContractView extends RentalContract{
         this.carFrameNumber = carFrameNumber;
         this.pickupLocationName = pickupLocationName;
         this.deliveryLocationName = deliveryLocationName;
+        this.rentalStatus = rentalStatus;
     }
 
+    public String getRentalStatus() {
+        return rentalStatus;
+    }
+    public void setRentalStatus(String rentalStatus) {
+        this.rentalStatus = rentalStatus;
+    }
     public String getCustomerName() {
         return customerName;
     }

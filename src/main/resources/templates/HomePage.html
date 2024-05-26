@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Bilabonnement</title>
-    <link rel="stylesheet" type="text/css" href="/static/Styles.css" th:href="@{Styles.css}">
+    <link rel="stylesheet" type="text/css" href="/static/Styles.css" th:href="@{HomePageStyles.css}">
 </head>
 <body>
 
@@ -16,13 +16,11 @@
 </div>
 
 <div>
-        <a th:href="@{/showDataPage}">Data registration Page</a>
+        <a th:href="@{/showDataPage}">Data registration</a>
 </div>
 
 <div>
-    <button>
-        Business developer
-    </button>
+        <a th:href="@{/showBusinessDeveloperPage}">Business Developer</a>
 </div>
 
 </body>
