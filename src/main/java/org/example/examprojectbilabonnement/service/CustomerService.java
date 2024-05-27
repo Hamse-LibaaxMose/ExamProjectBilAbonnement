@@ -10,30 +10,32 @@ import java.util.List;
 
 @Service
 public class CustomerService {
-    @Autowired
-    CustomerRepo customerRepo;
 
-    public List<Customer> findAll(){
+    @Autowired
+    CustomerRepo customerRepo; // Spring leverer automatisk en instans af CustomerRepo
+
+    // Henter alle kunder fra CustomerRepo
+    public List<Customer> findAll() {
         return customerRepo.findAll();
     }
-    public void addCustomer(Customer customer){
+
+    // Tilføjer en ny kunde via CustomerRepo
+    public void addCustomer(Customer customer) {
         customerRepo.addCustomer(customer);
     }
 
-    public void deleteCustomer(int customerID){
+    // Sletter en kunde ved hjælp af kundens ID via CustomerRepo
+    public void deleteCustomer(int customerID) {
         customerRepo.deleteCustomerByCustomerID(customerID);
     }
 
-    public Customer findByID(int customerID){
+    // Finder en kunde ved hjælp af kundens ID via CustomerRepo
+    public Customer findByID(int customerID) {
         return customerRepo.findByID(customerID);
     }
 
-    public void updateCustomer(Customer customer){
+    // Opdaterer oplysningerne om en kunde via CustomerRepo
+    public void updateCustomer(Customer customer) {
         customerRepo.updateByID(customer);
     }
-
-
-
 }
-
-

@@ -12,20 +12,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class LocationController {
+
     @Autowired
-    LocationService locationService;
+    LocationService locationService; // Spring leverer automatisk en instans af LocationService
 
     @GetMapping("manageLocationRegistration")
-
     public String manageLocation(Model model) {
+        // Tilføjer listen af lokationer til modellen
         model.addAttribute("locationList", locationService.findAll());
-        return "ManageLocationRegistration";
-
+        return "ManageLocationRegistration"; // Returnerer navnet på visningen
     }
 
     @GetMapping("/showAddLocationPage")
     public String showAddLocationPage() {
-        return "AddLocation";
+        return "AddLocation"; // Returnerer navnet på siden for at tilføje en lokation
     }
 
     @PostMapping("/addLocation")
@@ -33,21 +33,22 @@ public class LocationController {
                               @RequestParam("city") String city,
                               @RequestParam("zipCode") int zipCode,
                               @RequestParam("adress") String adress) {
-        Location location = new Location(name, city, zipCode, adress);
-        locationService.addLocation(location);
-        return "redirect:/manageLocationRegistration";
+        Location location = new Location(name, city, zipCode, adress); // Opretter en ny lokation
+        locationService.addLocation(location); // Tilføjer lokationen til systemet
+        return "redirect:/manageLocationRegistration"; // Omdirigerer til administrationssiden
     }
 
     @GetMapping("/deleteLocation/{locationID}")
     public String deleteLocation(@PathVariable("locationID") int locationID) {
-        locationService.deleteLocation(locationID);
-        return "redirect:/manageLocationRegistration";
+        locationService.deleteLocation(locationID); // Sletter lokationen med det givne ID
+        return "redirect:/manageLocationRegistration"; // Omdirigerer til administrationssiden
     }
 
     @GetMapping("/showLocationUpdatePage/{locationID}")
     public String showUpdatePage(@PathVariable("locationID") int locationID, Model model) {
+        // Tilføjer lokationen til modellen for opdateringssiden
         model.addAttribute("location", locationService.findByID(locationID));
-        return "UpdateLocation";
+        return "UpdateLocation"; // Returnerer navnet på opdateringssiden
     }
 
     @PostMapping("/updateLocation")
@@ -57,8 +58,8 @@ public class LocationController {
                                  @RequestParam("zipCode") int zipCode,
                                  @RequestParam("adress") String adress) {
 
-        Location location = new Location(locationID, name, city, zipCode, adress);
-        locationService.updateLocation(location);
-        return "redirect:/manageLocationRegistration";
+        Location location = new Location(locationID, name, city, zipCode, adress); // Opretter en lokation med opdaterede oplysninger
+        locationService.updateLocation(location); // Opdaterer lokationen i systemet
+        return "redirect:/manageLocationRegistration"; // Omdirigerer til administrationssiden
     }
 }

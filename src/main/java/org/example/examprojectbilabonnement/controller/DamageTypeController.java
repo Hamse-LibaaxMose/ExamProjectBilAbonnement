@@ -12,45 +12,50 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class DamageTypeController {
+
     @Autowired
-    private DamageTypeService damageTypeService;
+    private DamageTypeService damageTypeService; // Spring leverer automatisk en instans af DamageTypeService
 
     @GetMapping("/manageDamageTypeRegistration")
     public String manageDamageType(Model model) {
+        // Tilføjer listen af skadestyper til modellen
         model.addAttribute("damageTypeList", damageTypeService.findAll());
-        return "ManageDamageTypeRegistration";
+        return "ManageDamageTypeRegistration"; // Returnerer navnet på visningen
     }
 
     @GetMapping("/showAddDamageTypePage")
     public String showAddDamageTypePage() {
-        return "AddDamageType";
+        return "AddDamageType"; // Returnerer navnet på siden for at tilføje en skadestype
     }
 
     @PostMapping("/addDamageType")
     public String addDamageType(@RequestParam("name") String name, @RequestParam("price") int price) {
-        DamageType damageType = new DamageType(name, price);
-        damageTypeService.addDamageType(damageType);
-        return "redirect:/manageDamageTypeRegistration";
+        DamageType damageType = new DamageType(name, price); // Opretter en ny skadestype
+        damageTypeService.addDamageType(damageType); // Tilføjer skadestypen til systemet
+        return "redirect:/manageDamageTypeRegistration"; // Omdirigerer til administrationssiden
     }
 
     @GetMapping("/showDamageTypeUpdatePage/{damageTypeID}")
     public String showDamageTypeUpdatePage(@PathVariable("damageTypeID") int damageTypeID , Model model) {
-        DamageType damageType = damageTypeService.findById(damageTypeID);
-        model.addAttribute("damageType", damageType);
-        return "UpdateDamageType";
+        DamageType damageType = damageTypeService.findById(damageTypeID); // Finder skadestypen ved ID
+        model.addAttribute("damageType", damageType); // Tilføjer skadestypen til modellen
+        return "UpdateDamageType"; // Returnerer navnet på opdateringssiden
     }
 
     @PostMapping("/updateDamageType")
-    public String updateDamageType(@RequestParam("damageTypeID") int damageTypeID, @RequestParam("name") String name, @RequestParam("price") int price) {
-        DamageType damageType = new DamageType(damageTypeID, name, price);
-        damageTypeService.updateDamageType(damageType);
-        return "redirect:/manageDamageTypeRegistration";
+    public String updateDamageType(@RequestParam("damageTypeID") int damageTypeID,
+                                   @RequestParam("name") String name,
+                                   @RequestParam("price") int price) {
+        DamageType damageType = new DamageType(damageTypeID, name, price); // Opretter en skadestype med opdaterede oplysninger
+        damageTypeService.updateDamageType(damageType); // Opdaterer skadestypen i systemet
+        return "redirect:/manageDamageTypeRegistration"; // Omdirigerer til administrationssiden
     }
 
     @GetMapping("/deleteDamageType/{damageTypeID}")
     public String deleteDamageType(@PathVariable("damageTypeID") int damageTypeID) {
-        damageTypeService.deleteDamageType(damageTypeID);
-        return "redirect:/manageDamageTypeRegistration";
+        damageTypeService.deleteDamageType(damageTypeID); // Sletter skadestypen med det givne ID
+        return "redirect:/manageDamageTypeRegistration"; // Omdirigerer til administrationssiden
     }
 }
+
 

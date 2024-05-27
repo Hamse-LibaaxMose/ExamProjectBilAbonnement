@@ -15,37 +15,40 @@ import java.util.List;
 
 @Controller
 public class CustomerController {
+
     @Autowired
-    CustomerService customerService;
+    CustomerService customerService; // Automatisk injektion af CustomerService
 
     @GetMapping("/manageCustomerRegistration")
     public String manageCustomer(Model model) {
+        // Tilføjer listen af kunder til modellen
         model.addAttribute("customerList", customerService.findAll());
-        return "ManageCustomerRegistration";
+        return "ManageCustomerRegistration"; // Returnerer navnet på visningen
     }
 
     @GetMapping("/showAddCustomerPage")
     public String showAddCustomerPage() {
-        return "AddCustomer";
+        return "AddCustomer"; // Returnerer navnet på siden for at tilføje en kunde
     }
 
     @PostMapping("/addCustomer")
     public String addCustomer(@RequestParam("name") String name, @RequestParam("adress") String adress, @RequestParam("mail") String mail, @RequestParam("phoneNumber") String phoneNumber) {
-        Customer customer = new Customer(name, adress, mail, phoneNumber);
-        customerService.addCustomer(customer);
-        return "redirect:/manageCustomerRegistration";
+        Customer customer = new Customer(name, adress, mail, phoneNumber); // Opretter en ny kunde
+        customerService.addCustomer(customer); // Tilføjer kunden til systemet
+        return "redirect:/manageCustomerRegistration"; // Omdirigerer til administrationssiden
     }
 
     @GetMapping("deleteCustomer/{customerID}")
     public String deleteCustomer(@PathVariable("customerID") int customerID) {
-        customerService.deleteCustomer(customerID);
-        return "redirect:/manageCustomerRegistration";
+        customerService.deleteCustomer(customerID); // Sletter kunden med det givne ID
+        return "redirect:/manageCustomerRegistration"; // Omdirigerer til administrationssiden
     }
 
     @GetMapping("/showCustomerUpdatePage/{customerID}")
     public String showUpdatePage(@PathVariable("customerID") int customerID, Model model) {
+        // Tilføjer kunden til modellen for opdateringssiden
         model.addAttribute("customer", customerService.findByID(customerID));
-        return "UpdateCustomer";
+        return "UpdateCustomer"; // Returnerer navnet på opdateringssiden
     }
 
     @PostMapping("/updateCustomer")
@@ -55,13 +58,8 @@ public class CustomerController {
                                  @RequestParam("mail") String mail,
                                  @RequestParam("phoneNumber") String phoneNumber) {
 
-        Customer customer = new Customer(customerID, name, adress, mail, phoneNumber);
-        customerService.updateCustomer(customer);
-        return "redirect:/manageCustomerRegistration";
+        Customer customer = new Customer(customerID, name, adress, mail, phoneNumber); // Opretter en kunde med opdaterede oplysninger
+        customerService.updateCustomer(customer); // Opdaterer kunden i systemet
+        return "redirect:/manageCustomerRegistration"; // Omdirigerer til administrationssiden
     }
 }
-
-
-
-
-

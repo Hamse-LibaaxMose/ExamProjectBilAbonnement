@@ -18,30 +18,33 @@ import java.util.Date;
 
 @Controller
 public class RentalContractController {
-    @Autowired
-    RentalContractService rentalContractService;
 
     @Autowired
-    CustomerService customerService;
+    RentalContractService rentalContractService; // Spring leverer automatisk en instans af RentalContractService
 
     @Autowired
-    CarService carService;
+    CustomerService customerService; // Spring leverer automatisk en instans af CustomerService
 
     @Autowired
-    LocationService locationService;
+    CarService carService; // Spring leverer automatisk en instans af CarService
+
+    @Autowired
+    LocationService locationService; // Spring leverer automatisk en instans af LocationService
 
     @GetMapping("/manageRentalContractRegistration")
     public String manageCustomer(Model model) {
+        // Tilføjer listen af lejekontrakter til modellen
         model.addAttribute("contractList", rentalContractService.findAll());
-        return "ManageRentalContractRegistration";
+        return "ManageRentalContractRegistration"; // Returnerer navnet på visningen
     }
 
     @GetMapping("/showRentalContractPage")
     public String showAddRentalContractPage(Model model) {
+        // Tilføjer nødvendige lister til modellen for oprettelse af en lejekontrakt
         model.addAttribute("customerList", customerService.findAll());
         model.addAttribute("carList", carService.findAll());
         model.addAttribute("locationList", locationService.findAll());
-        return "AddRentalContract";
+        return "AddRentalContract"; // Returnerer navnet på siden for at tilføje en lejekontrakt
     }
 
     @PostMapping("/addRentalContract")
@@ -53,47 +56,45 @@ public class RentalContractController {
                                     @RequestParam("carNumberID") int carNumberID,
                                     @RequestParam("pickupLocationID") int pickupLocationID,
                                     @RequestParam("deliveryLocationID") int deliveryLocationID) {
+        // Opretter en ny lejekontrakt
         RentalContract rentalContract = new RentalContract(startDate, endDate, price, customerID, subscriptionID, carNumberID, pickupLocationID, deliveryLocationID);
-        rentalContractService.addRentalContract(rentalContract);
-        return "redirect:/manageRentalContractRegistration";
+        rentalContractService.addRentalContract(rentalContract); // Tilføjer lejekontrakten til systemet
+        return "redirect:/manageRentalContractRegistration"; // Omdirigerer til administrationssiden for lejekontrakter
     }
 
     @GetMapping("deleteRentalContract/{rentalContractID}")
-    public String deleteRentalContract(@PathVariable("rentalContractID") int rentalContractID){
-        rentalContractService.deleteRentalContract(rentalContractID);
-        return "redirect:/manageRentalContractRegistration";
+    public String deleteRentalContract(@PathVariable("rentalContractID") int rentalContractID) {
+        rentalContractService.deleteRentalContract(rentalContractID); // Sletter lejekontrakten med det givne ID
+        return "redirect:/manageRentalContractRegistration"; // Omdirigerer til administrationssiden for lejekontrakter
     }
-
-
 
     @GetMapping("/showRentalContractUpdatePage/{rentalContractID}")
     public String showUpdatePage(@PathVariable("rentalContractID") int rentalContractID, Model model) {
+        // Tilføjer lejekontrakten og nødvendige lister til modellen for opdateringssiden
         model.addAttribute("rentalContract", rentalContractService.findByID(rentalContractID));
         model.addAttribute("customerList", customerService.findAll());
         model.addAttribute("carList", carService.findAll());
         model.addAttribute("locationList", locationService.findAll());
-        return "UpdateRentalContract";
+        return "UpdateRentalContract"; // Returnerer navnet på opdateringssiden for lejekontrakter
     }
 
     @PostMapping("/updateRentalContract")
     public String updateRentalContract(@RequestParam("rentalContractID") int rentalContractID,
                                        @RequestParam("startDate") String startDate,
-                                       @RequestParam("endDate") String endDate, @RequestParam("price") int price,
+                                       @RequestParam("endDate") String endDate,
+                                       @RequestParam("price") int price,
                                        @RequestParam("customerID") int customerID,
                                        @RequestParam("subscriptionID") int subscriptionID,
                                        @RequestParam("carNumberID") int carNumberID,
                                        @RequestParam("pickupLocationID") int pickupLocationID,
                                        @RequestParam("deliveryLocationID") int deliveryLocationID) {
-
+        // Opretter en lejekontrakt med opdaterede oplysninger
         RentalContract rentalContract = new RentalContract(rentalContractID, startDate, endDate, price, customerID, subscriptionID, carNumberID, pickupLocationID, deliveryLocationID);
-
-        rentalContractService.updateRentalContract(rentalContract);
-
-        return "redirect:/manageRentalContractRegistration";
-
-
+        rentalContractService.updateRentalContract(rentalContract); // Opdaterer lejekontrakten i systemet
+        return "redirect:/manageRentalContractRegistration"; // Omdirigerer til administrationssiden for lejekontrakter
     }
 }
+
 
 
 

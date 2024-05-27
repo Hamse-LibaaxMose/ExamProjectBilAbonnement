@@ -9,25 +9,33 @@ import java.util.List;
 
 @Service
 public class CarService {
-    @Autowired
-    CarRepo carRepo;
 
-    public List<Car> findAll(){
-     return carRepo.findAll();
+    @Autowired
+    CarRepo carRepo; // Spring leverer automatisk en instans af CarRepo
+
+    // Henter alle biler fra CarRepo
+    public List<Car> findAll() {
+        return carRepo.findAll();
     }
-    public void addCar(Car car){
+
+    // Tilføjer en ny bil via CarRepo
+    public void addCar(Car car) {
         carRepo.addCar(car);
     }
-    public void deleteCar(int carNumberId){
+
+    // Sletter en bil ved hjælp af bilens ID via CarRepo
+    public void deleteCar(int carNumberId) {
         carRepo.deleteCarByCarNumberID(carNumberId);
     }
 
-    public Car findByID(int carNumberID){
+    // Finder en bil ved hjælp af bilens ID via CarRepo
+    public Car findByID(int carNumberID) {
         return carRepo.findByID(carNumberID);
-
-    }
-    public void updateCar(Car car){
-         carRepo.updateByID(car);
     }
 
+    // Opdaterer oplysningerne om en bil via CarRepo
+    public void updateCar(Car car) {
+        carRepo.updateByID(car);
+    }
 }
+
