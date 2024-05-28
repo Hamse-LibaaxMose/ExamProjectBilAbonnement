@@ -20,7 +20,7 @@ public class PurchaseAgreementRepo {
     private JdbcTemplate jdbcTemplate; // Spring leverer automatisk en instans af JdbcTemplate
 
     // Tilføjer en ny købsaftale til databasen og returnerer det genererede ID
-    public int addPurchaseAgreement(int customerID, int rentalContractID) {
+    public int addPurchaseAgreement(int customerID, int rentalContractID) { // denne metode er taget fra chat gpt
         KeyHolder keyHolder = new GeneratedKeyHolder();
         final String INSERT_SQL = "INSERT INTO bilabonnementhamsa.purchaseagreement(customerId, rentalContractID) VALUES(?,?)";
         jdbcTemplate.update(connection -> {
